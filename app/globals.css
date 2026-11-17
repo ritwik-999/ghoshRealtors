@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --bg-canvas: #F7F5F0;
+  --surface-bright: #FEF9EF;
+  --surface-pure: #FFFFFF;
+  --surface-low: #F8F3EA;
+  --surface-badge: #F4EFE6;
+  --border-hairline: #EAE5DC;
+  --ink-primary: #202321;
+  --ink-deep: #0A0D0B;
+  --ink-body: #353535;
+  --ink-muted: #6B6A65;
+  --accent-gold: #B89A62;
+  --accent-gold-text: #8C703B;
+  --error-ink: #BA1A1A;
+}
+
+@theme inline {
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-canvas);
+  color: var(--ink-body);
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--ink-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.label-caps {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.ambient-search-shadow {
+  box-shadow: 0 16px 36px -12px rgba(32, 35, 33, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

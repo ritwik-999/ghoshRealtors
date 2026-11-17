@@ -1,0 +1,8 @@
+{
+  "name": "Aurelia Estates",
+  "description": "Curated architectural residences, heritage bungalows, and penthouse monographs in Kolkata.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,97 @@
+// Database-ready PostgreSQL schema specification for Aurelia Estates.
+// Designed for deployment with Prisma ORM and Cloud SQL / PostgreSQL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Location {
+  id                  String     @id @default(cuid())
+  slug                String     @unique
+  name                String
+  city                String
+  citySlug            String
+  tagline             String
+  character           String
+  medianRatePerSqFt   Int
+  connectivity        String
+  landmark            String
+  coverImage          String
+  properties          Property[]
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+}
+
+model Developer {
+  id               String     @id @default(cuid())
+  name             String     @unique
+  foundedYear      Int
+  headquarters     String
+  specialty        String
+  completedSqFt    String
+  signatureProject String
+  summary          String
+  properties       Property[]
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+model Property {
+  id                String    @id @default(cuid())
+  slug              String    @unique
+  title             String
+  subtitle          String
+  city              String
+  citySlug          String
+  neighborhood      String
+  address           String
+  propertyType      String
+  configuration     String
+  priceCrores       Float
+  bedrooms          Int
+  bathrooms         Int
+  areaSqFt          Int
+  carpetAreaSqFt    Int
+  plotAreaSqFt      Int?
+  floorLevel        String
+  facing            String
+  possession        String
+  reraId            String
+  architect         String
+  statusLabel       String
+  featured          Boolean   @default(false)
+  trending          Boolean   @default(false)
+  releasedYear      Int
+  heroImage         String
+  gallery           Json
+  floorplanZones    Json
+  highlights        String[]
+  description       String
+  architecturalNote String
+  locationId        String
+  location          Location  @relation(fields: [locationId], references: [id])
+  developerId       String
+  developer         Developer @relation(fields: [developerId], references: [id])
+  enquiries         Enquiry[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model Enquiry {
+  id            String    @id @default(cuid())
+  referenceCode String    @unique
+  name          String
+  email         String
+  phone         String
+  preferredDate String?
+  inquiryType   String
+  message       String
+  propertyId    String?
+  property      Property? @relation(fields: [propertyId], references: [id])
+  createdAt     DateTime  @default(now())
+}
